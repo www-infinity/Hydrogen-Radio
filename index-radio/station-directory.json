@@ -8,7 +8,8 @@
       "wavelength": 0.21106,
       "type": "science",
       "description": "21-cm neutral hydrogen line — the most abundant element in the universe",
-      "stream": null
+      "stream": null,
+      "streamNote": "Synthetic tone generated locally by hydrogen-reference.js; no external stream URL needed"
     },
     {
       "id": "art-bell-archive",

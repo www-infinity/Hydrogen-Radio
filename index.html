@@ -411,7 +411,7 @@
   const freqEl   = document.getElementById("station-freq");
   const descEl   = document.getElementById("station-desc");
 
-  radio.onStationChange((station) => {
+  function onStationChanged(station) {
     if (!station) {
       dot.className = "";
       nameEl.textContent = "— OFF AIR —";
@@ -427,13 +427,22 @@
       : "";
     descEl.textContent = station.description || "";
     setActiveButton(station.id);
-  });
+
+    // Re-init visualizer if the audio context was just created
+    if (radio.analyser && !vis) {
+      initVisualizer();
+    } else if (radio.analyser && vis && !vis.isRunning) {
+      vis.start();
+    }
+  }
+
+  radio.onStationChange(onStationChanged);
 
   // ── Transport buttons ─────────────────────────────────────────────
   document.getElementById("btn-stop").addEventListener("click", () => {
     radio.stop();
     dot.className = "";
-    vis.stop();
+    if (vis) vis.stop();
   });
 
   document.getElementById("btn-scan-down").addEventListener("click", () => {
@@ -492,15 +501,6 @@
     nameEl.textContent = "⚠ Failed to load stations";
     dot.className = "error";
   }
-
-  // Re-init visualizer whenever a station is tuned (context may be new)
-  radio.onStationChange(() => {
-    if (radio.analyser && !vis) {
-      initVisualizer();
-    } else if (radio.analyser && vis && !vis._running) {
-      vis.start();
-    }
-  });
 </script>
 </body>
 </html>

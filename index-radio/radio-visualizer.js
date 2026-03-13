@@ -101,6 +101,11 @@ class RadioVisualizer {
     return this._mode;
   }
 
+  /** Whether the animation loop is currently running. */
+  get isRunning() {
+    return this._running;
+  }
+
   /** Start the animation loop. */
   start() {
     if (this._running) return;
@@ -243,8 +248,8 @@ class RadioVisualizer {
       p.draw(ctx);
     });
 
-    // Render per-band bars as a subtle underlay
-    renderParticles(freqData, ctx, width, height);
+    // Render per-band bars as a subtle frequency underlay
+    renderFrequencyBars(freqData, ctx, width, height);
   }
 
   /** Signal galaxy — rotating star field driven by frequency */
@@ -298,7 +303,9 @@ class RadioVisualizer {
     const resize = () => {
       this._canvas.width = this._canvas.offsetWidth || window.innerWidth;
       this._canvas.height = this._canvas.offsetHeight || 300;
-      this._initParticles(0); // reset existing particles on resize
+      // Reset and reinitialise particles for the new canvas dimensions
+      this._particles = [];
+      this._initParticles(200);
     };
     window.addEventListener("resize", resize);
     resize();
@@ -306,15 +313,15 @@ class RadioVisualizer {
 }
 
 /**
- * Renders per-band energy as small glowing dots.
- * Referenced by the particle-field mode as a frequency underlay.
+ * Renders per-band frequency energy as glowing bars (frequency underlay).
+ * Used by the particle-field visual mode as a background layer.
  *
  * @param {Uint8Array} freqData
  * @param {CanvasRenderingContext2D} ctx
  * @param {number} width
  * @param {number} height
  */
-function renderParticles(freqData, ctx, width, height) {
+function renderFrequencyBars(freqData, ctx, width, height) {
   const step = Math.ceil(freqData.length / 64);
   for (let i = 0; i < freqData.length; i += step) {
     const magnitude = freqData[i] / 255;
@@ -327,4 +334,4 @@ function renderParticles(freqData, ctx, width, height) {
   }
 }
 
-export { RadioVisualizer, renderParticles, MODES };
+export { RadioVisualizer, renderFrequencyBars, MODES };
