@@ -1,0 +1,55 @@
+{
+  "stations": [
+    {
+      "id": "hydrogen-reference",
+      "name": "Hydrogen Reference",
+      "frequency": 1420.405,
+      "unit": "MHz",
+      "wavelength": 0.21106,
+      "type": "science",
+      "description": "21-cm neutral hydrogen line — the most abundant element in the universe",
+      "stream": null
+    },
+    {
+      "id": "art-bell-archive",
+      "name": "Art Bell Archive",
+      "frequency": null,
+      "type": "talk",
+      "description": "Classic late-night talk radio archive",
+      "stream": "https://archive.org/download/ArtBellRadio/ArtBell_20000101.mp3"
+    },
+    {
+      "id": "am-1040",
+      "name": "AM 1040 — WHO Radio",
+      "frequency": 1040,
+      "unit": "kHz",
+      "type": "news",
+      "description": "WHO Radio Des Moines",
+      "stream": "https://15723.live.streamtheworld.com/WHOWAM.mp3"
+    },
+    {
+      "id": "soma-groove-salad",
+      "name": "SomaFM — Groove Salad",
+      "frequency": null,
+      "type": "ambient",
+      "description": "A nicely chilled plate of ambient/downtempo beats and grooves",
+      "stream": "https://ice6.somafm.com/groovesalad-128-mp3"
+    },
+    {
+      "id": "soma-space-station",
+      "name": "SomaFM — Space Station Soma",
+      "frequency": null,
+      "type": "ambient",
+      "description": "Tune in, turn on, space out",
+      "stream": "https://ice6.somafm.com/spacestation-128-mp3"
+    },
+    {
+      "id": "soma-drone-zone",
+      "name": "SomaFM — Drone Zone",
+      "frequency": null,
+      "type": "ambient",
+      "description": "Served best chilled, safe with most medications",
+      "stream": "https://ice6.somafm.com/dronezone-128-mp3"
+    }
+  ]
+}
